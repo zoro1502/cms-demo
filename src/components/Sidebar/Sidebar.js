@@ -10,6 +10,7 @@ import SofiaLogo from "../Icons/SofiaLogo.js";
 import cn from "classnames";
 import userImg from "../../assets/user.svg";
 import SearchBarIcon from '../Icons/HeaderIcons/SearchBarIcon.js';
+import { Link } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const Sidebar = ( props ) =>
 {
@@ -36,8 +37,8 @@ const Sidebar = ( props ) =>
 	}, [ props.sidebarOpened ] )
 
 	return (
-		<nav className={ cn( s.root, { [ s.sidebarOpen ]: burgerSidebarOpen } ) } 
-		style={{width: '300px', transform: 'translateX(-300px)'}} >
+		<nav className={ cn( s.root, { [ s.sidebarOpen ]: burgerSidebarOpen } ) }
+			style={ { width: '300px', transform: 'translateX(-300px)' } } >
 			<header className={ s.logo + ' d-block mb-5 mt-3' }>
 				<Form className="d-none d-sm-block" inline>
 					<FormGroup>
@@ -53,17 +54,19 @@ const Sidebar = ( props ) =>
 				</Form>
 
 			</header>
-			<div className='w-100 mt-5 mb-3' style={{borderBottom: '1px '}}>
-				<span className={ `${ s.avatar } rounded-circle w-100  mr-2` }>
-					<img src={ userImg } alt="User" className='text-center w-100' />
-				</span>
+			<div className='w-100 mt-5 mb-3' style={ { borderBottom: '1px ' } }>
+				<Link to="/profile">
+					<span className={ `${ s.avatar } rounded-circle w-100  mr-2` }>
+						<img src={ userImg } alt="User" className='text-center w-100' />
+					</span>
+				</Link>
 			</div>
-			<ul className={ s.nav + " mt-5"} >
+			<ul className={ s.nav + " mt-5" } >
 				<LinksGroup
 					onActiveSidebarItemChange={ activeItem => props.dispatch( changeActiveSidebarItem( activeItem ) ) }
 					activeItem={ props.activeItem }
 					header="Friend"
-					className="border sidebar-hover mb-3" 
+					className="border sidebar-hover mb-3"
 					isHeader
 					iconName={ <i className={ 'eva eva eva-person' } /> }
 					link="/template/friend"
@@ -73,7 +76,7 @@ const Sidebar = ( props ) =>
 					onActiveSidebarItemChange={ activeItem => props.dispatch( changeActiveSidebarItem( activeItem ) ) }
 					activeItem={ props.activeItem }
 					header="Message"
-					className="border sidebar-hover mb-3" 
+					className="border sidebar-hover mb-3"
 					isHeader
 					iconName={ <i className={ 'eva eva eva-person' } /> }
 					link="/template/message"
@@ -83,7 +86,7 @@ const Sidebar = ( props ) =>
 					onActiveSidebarItemChange={ activeItem => props.dispatch( changeActiveSidebarItem( activeItem ) ) }
 					activeItem={ props.activeItem }
 					header="Group-message"
-					className="border sidebar-hover mb-3" 
+					className="border sidebar-hover mb-3"
 					isHeader
 					iconName={ <i className={ 'eva eva eva-person' } /> }
 					link="/template/group-message"
@@ -93,7 +96,7 @@ const Sidebar = ( props ) =>
 					onActiveSidebarItemChange={ activeItem => props.dispatch( changeActiveSidebarItem( activeItem ) ) }
 					activeItem={ props.activeItem }
 					header="Saved"
-					className="border sidebar-hover mb-3" 
+					className="border sidebar-hover mb-3"
 					isHeader
 					iconName={ <i className={ 'eva eva eva-person' } /> }
 					link="/template/save"

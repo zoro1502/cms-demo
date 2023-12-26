@@ -26,6 +26,7 @@ import "./styles/app.scss";
 import "react-toastify/dist/ReactToastify.css";
 import ForgetPassword from "./pages/login/ForgetPassword";
 import ResetPassword from "./pages/login/ResetPassword";
+import Profile from "./pages/profile/Profile";
 
 const PrivateRoute = ({ dispatch, component, ...rest }) => {
   if (!isAuthenticated(JSON.parse(localStorage.getItem("authenticated")))) {
@@ -48,6 +49,8 @@ const App = (props) => {
           <Route path="/template" exact render={() => <Redirect to="/template/dashboard"/>}/>
           <PrivateRoute path="/template" dispatch={props.dispatch} component={LayoutComponent} />
           <Route path="/login" exact component={Login} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/user-detail" exact component={Profile} />
           <Route path="/error" exact component={ErrorPage} />
           <Route path="/register" exact component={Register} />
           <Route path="/password/forget" exact component={ForgetPassword} />

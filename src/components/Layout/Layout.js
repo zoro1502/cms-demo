@@ -21,47 +21,61 @@ import Maps from "../../pages/uielements/maps/google/GoogleMapPage";
 
 // -- Component Styles
 import s from "./Layout.module.scss";
+import Profile from "../../pages/profile/Profile";
+import { Friends } from "../../pages/profile/ListFriends";
 
-const Layout = (props) => {
-  return (
-    <div className={s.root}>
-      <div className={s.wrap} style={{marginLeft: '300px'}}>
-        <Header />
-        <Sidebar />
-        <main className={s.content}>
-          <Breadcrumbs url={props.location.pathname} />
-          <Switch>
-            <Route path="/template" exact render={() => <Redirect to="template/dashboard"/>} />
-            <Route path="/template/dashboard" exact component={Dashboard}/>
-            <Route path="/template/message" exact component={Dashboard}/>
-            <Route path="/template/save" exact component={Dashboard}/>
-            <Route path="/template/friend" exact component={Dashboard}/>
-            <Route path="/template/group-message" exact component={Dashboard}/>
-            <Route path="/template/typography" exact component={Typography} />
-            <Route path="/template/tables" exact component={Tables} />
-            <Route path="/template/notifications" exact component={Notifications} />
-            <Route path="/template/ui-elements" exact render={() => <Redirect to={"/template/ui-elements/charts"} />} />
-            <Route path="/template/ui-elements/charts" exact component={Charts} />
-            <Route path="/template/ui-elements/icons" exact component={Icons} />
-            <Route path="/template/ui-elements/maps" exact component={Maps} />
-            <Route path='*' exact render={() => <Redirect to="/error" />} />
-          </Switch>
-        </main>
-        <Footer />
-      </div>
-    </div>
-  );
+const Layout = ( props ) =>
+{
+	let location = props.location.pathname;
+	return (
+		<div className={ s.root }>
+			<Header />
+			<div className={ s.wrap } style={ { marginLeft: !location.includes( 'profile' ) ? '300px' : '0' } }>
+				{
+					!location.includes( 'profile' ) ?
+						<>
+							
+							<Sidebar />
+						</>
+						: <></>
+				}
+				<main className={ s.content }>
+					<Breadcrumbs url={ props.location.pathname } />
+					<Switch>
+						<Route path="/template" exact render={ () => <Redirect to="template/dashboard" /> } />
+						<Route path="/template/dashboard" exact component={ Dashboard } />
+						<Route path="/template/profile" exact component={ Profile } />
+						<Route path="/template/user-detail" exact component={ Profile } />
+						<Route path="/template/message" exact component={ Dashboard } />
+						<Route path="/template/save" exact component={ Dashboard } />
+						<Route path="/template/friend" exact component={ Friends } />
+						<Route path="/template/group-message" exact component={ Dashboard } />
+						<Route path="/template/typography" exact component={ Typography } />
+						<Route path="/template/tables" exact component={ Tables } />
+						<Route path="/template/notifications" exact component={ Notifications } />
+						<Route path="/template/ui-elements" exact render={ () => <Redirect to={ "/template/ui-elements/charts" } /> } />
+						<Route path="/template/ui-elements/charts" exact component={ Charts } />
+						<Route path="/template/ui-elements/icons" exact component={ Icons } />
+						<Route path="/template/ui-elements/maps" exact component={ Maps } />
+						<Route path='*' exact render={ () => <Redirect to="/error" /> } />
+					</Switch>
+				</main>
+				<Footer />
+			</div>
+		</div>
+	);
 }
 
 Layout.propTypes = {
-  sidebarOpened: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
+	sidebarOpened: PropTypes.bool,
+	dispatch: PropTypes.func.isRequired,
 }
 
-function mapStateToProps(store) {
-  return {
-    sidebarOpened: store.navigation.sidebarOpened,
-  };
+function mapStateToProps ( store )
+{
+	return {
+		sidebarOpened: store.navigation.sidebarOpened,
+	};
 }
 
-export default withRouter(connect(mapStateToProps)(Layout));
+export default withRouter( connect( mapStateToProps )( Layout ) );

@@ -171,16 +171,7 @@ const Dashboard = () =>
 												<p className="body-3 muted">Yoga, Airplace Gym</p>
 											</div>
 										</div>
-										<div className="checkbox checkbox-primary">
-											<input
-												id={ "checkbox" + key }
-												type="checkbox"
-												className="styled"
-												checked={ checkboxes[ key ] }
-												onChange={ () => toggleCheckbox( key ) }
-											/>
-											<label htmlFor={ "checkbox" + key } />
-										</div>
+										
 									</div>
 								</div>
 							} ) }
@@ -199,16 +190,7 @@ const Dashboard = () =>
 												<p className="body-3 muted">From mr.{ key }</p>
 											</div>
 										</div>
-										<div className="checkbox checkbox-primary">
-											<input
-												id={ "checkbox" + key }
-												type="checkbox"
-												className="styled"
-												checked={ checkboxes[ key ] }
-												onChange={ () => toggleCheckbox( key ) }
-											/>
-											<label htmlFor={ "checkbox" + key } />
-										</div>
+										
 									</div>
 								</div>
 							} ) }
